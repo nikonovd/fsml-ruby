@@ -9,5 +9,5 @@ else
   input = File.read(ARGV[0]);
 
   parser = FSML::Parser.new(input);
-  puts parser.ast()
+  puts parser.to_ast()
 end

@@ -1,4 +1,8 @@
+require 'transition'
+
 class State
+
+  attr_reader :name
 
   def initialize(name, initial)
     @name = name
@@ -6,8 +10,14 @@ class State
     @transitions = Hash.new
   end
 
-  def to_s
-    puts "State #{@name} initial? #{@initial}"
+  def add_transition(to_state, input, action)
+    @transitions[input] = Array.new if @transitions[input].nil?
+    to_state = self.name if to_state.nil? || to_state.empty?
+    @transitions[input].push(Transition.new(self.name, to_state, input, action))
+  end
+
+  def initial?
+    @initial == true
   end
 
 end
