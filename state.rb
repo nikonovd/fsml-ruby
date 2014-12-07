@@ -4,8 +4,6 @@ class State
 
   attr_reader :name
 
-  private :initialize_transitions, :add_transition_for_input, :sanitize_to_state
-
   def initialize(name, initial)
     @name = name
     @initial = initial
@@ -33,5 +31,7 @@ class State
   def initialize_transitions(input)
     @transitions[input] = Array.new if @transitions[input].nil?
   end
+
+  private :initialize_transitions, :add_transition_for_input, :sanitize_to_state
 
 end
