@@ -14,12 +14,6 @@ class StateMachine
     return state
   end
 
-  def add_transition(from_state, to_state, input, action)
-    @states[from_state].each do |state|
-      state.add_transition(to_state, input, action) if not state.nil?
-    end
-  end
-
   def to_s
     @states.to_s
   end

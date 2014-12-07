@@ -21,7 +21,7 @@ options {
 fsm : state* EOF;
 state : initial? 'state' id { @current_state = @machine.add_state($id.text, ($initial.text == 'initial')) } '{' transition* '}' ;
 initial : 'initial' ;
-transition : input ('/' action )? ( '->' id )? ';' { @machine.add_transition(@current_state.name, $id.text, $input.text, $action.text) };
+transition : input ('/' action )? ( '->' id )? ';' { @current_state.add_transition($id.text, $input.text, $action.text) };
 id : NAME ;
 input : NAME ;
 action : NAME ;
