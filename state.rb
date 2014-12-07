@@ -4,7 +4,7 @@ class State
 
   attr_reader :name
 
-  private :initialize_transitions, :sanitize_to_state
+  private :initialize_transitions, :add_transition_for_input, :sanitize_to_state
 
   def initialize(name, initial)
     @name = name
@@ -18,6 +18,10 @@ class State
 
   def add_transition(to_state, input, action)
     initialize_transitions(input)
+    add_transition_for_input(action, input, to_state)
+  end
+
+  def add_transition_for_input(action, input, to_state)
     @transitions[input].push(Transition.new(self.name, sanitize_to_state(to_state), input, action))
   end
 
