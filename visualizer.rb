@@ -44,8 +44,7 @@ class Visualizer
     from = state.name
     to = (transition.to.nil? or transition.to.empty?) ? state.name : transition.to
     label = transition.input + ((transition.action.nil? or transition.action.empty?) ? '' : '/'+transition.action)
-    puts "#{from} #{to} #{label}"
-    puts @graph.add_edge(from, to, :label => label)
+    @graph.add_edge(from, to, :label => label)
   end
 
   private :append_nodes, :append_transitions, :create_transition
