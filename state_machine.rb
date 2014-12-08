@@ -2,6 +2,7 @@ require 'state'
 
 class StateMachine
 
+  attr_reader :states
 
   def initialize
     @states = Hash.new
@@ -12,6 +13,10 @@ class StateMachine
     state = State.new(name, initial)
     @states[name].push(state)
     return state
+  end
+
+  def get_state(name)
+    return @states[name].first
   end
 
   def to_s

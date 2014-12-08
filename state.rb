@@ -2,7 +2,7 @@ require 'transition'
 
 class State
 
-  attr_reader :name
+  attr_reader :name, :transitions
 
   def initialize(name, initial)
     @name = name
@@ -24,7 +24,7 @@ class State
   end
 
   def sanitize_to_state(to_state)
-    to_state = self.name if to_state.nil? || to_state.empty?
+    to_state = (to_state.nil? or to_state.empty?) ? self.name : to_state;
     return to_state
   end
 

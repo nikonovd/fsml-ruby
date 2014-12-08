@@ -26,4 +26,4 @@ id : NAME ;
 input : NAME ;
 action : NAME ;
 NAME : ('a'..'z'|'A'..'Z')+ ;
-WS : ( '\t' | ' ' | '\r' | '\f' )+ {$channel = HIDDEN;};
+WS : ( '\t' | ' ' | '\r' | '\f' | '\n' )+ {$channel = HIDDEN;};

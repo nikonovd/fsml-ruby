@@ -14,3 +14,4 @@ clean:
 	@rm -rf fsml_lexer.rb
 	@rm -rf fsml_parser.rb
 	@rm -rf FSML.tokens
+	@rm -rf *.png
