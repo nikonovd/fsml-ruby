@@ -3,6 +3,8 @@ require 'state'
 
 class Validator
 
+  include Exceptions
+
   def initialize(state_machine)
     @state_machine = state_machine
   end
@@ -16,13 +18,13 @@ class Validator
   end
 
   def check_single_initial
-    states = @state_machine.states.flatten.flatten.keep_if { |state| state.instance_of? State }
-    raise Exceptions::SingleInitialStateException if states.keep_if { |state| state.initial? }.length != 1
+    states = @state_machine.to_state_array
+    raise SingleInitialStateException if states.keep_if { |state| state.initial? }.length != 1
   end
 
   def check_distinct_ids
     @state_machine.states.each do |_, states|
-      raise Exceptions::DistinctIdsException if states.length > 1
+      raise DistinctIdsException if states.length > 1
     end
   end
 

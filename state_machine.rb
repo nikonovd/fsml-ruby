@@ -19,8 +19,9 @@ class StateMachine
     return @states[name].first
   end
 
-  def to_s
-    @states.to_s
+  def to_state_array
+    # call flatten operation 2 times means: first flat the hash to an array, afterwards flat the inner arrays
+    return @states.flatten.flatten.keep_if { |state| state.instance_of? State }
   end
 
 end

@@ -18,7 +18,7 @@ else
 
   begin
     validator.validate
-  rescue Exceptions::ValidatorException => e
+  rescue Exceptions::FSMLException => e
     raise e
   end
 

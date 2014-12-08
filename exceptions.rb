@@ -1,6 +1,9 @@
 module Exceptions
 
-  class ValidatorException < Exception
+  class FSMLException < Exception
+  end
+
+  class ValidatorException < FSMLException
   end
 
   class ParseException < Exception
