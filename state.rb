@@ -19,6 +19,20 @@ class State
     add_transition_for_input(action, input, to_state)
   end
 
+  def get_reachable_states(state_machine)
+    reachable_states = Array.new
+    all_transitions = Array.new
+    all_transitions.push(@transitions.values)
+    all_transitions.flatten.each do |transition|
+      to_state = state_machine.get_state(transition.to)
+      reachable_states.push(to_state) if not to_state.nil?
+    end
+
+    return reachable_states
+  end
+
+  private
+
   def add_transition_for_input(action, input, to_state)
     @transitions[input].push(Transition.new(self.name, sanitize_to_state(to_state), input, action))
   end
@@ -31,7 +45,5 @@ class State
   def initialize_transitions(input)
     @transitions[input] = Array.new if @transitions[input].nil?
   end
-
-  private :initialize_transitions, :add_transition_for_input, :sanitize_to_state
 
 end
