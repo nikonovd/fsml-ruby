@@ -6,7 +6,13 @@ module Exceptions
   class ValidatorException < FSMLException
   end
 
-  class ParseException < Exception
+  class ParseException < FSMLException
+  end
+
+  class SimulationException < FSMLException
+  end
+
+  class IllegalInputException < SimulationException
   end
 
   class SingleInitialStateException < ValidatorException
