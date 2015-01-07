@@ -1,0 +1,30 @@
+require 'handler.rb'
+
+class <%= @stepper_class_name %>
+
+  def initialize
+    @current_state = "<%= @initial_state.name %>"
+    @handler = <%= @handler_class_name %>.new
+    @steps = Hash.new
+    <% @transitions.each do |transition| %>
+      add("<%= transition.from %>","<%= transition.input %>","<%= transition.action.nil? ? "nil" : transition.action %>","<%= transition.to %>")
+    <% end %>
+  end
+
+  def step(input)
+    tuple = @steps[@current_state]["transitions"][input]
+    @handler.handle(tuple[0])
+    puts "Stepping from #{@current_state} into #{tuple[1]} with input #{input}"
+    @current_state = tuple[1]
+  end
+
+  private
+
+  def add(from_state, input, action, to_state)
+    if not @steps.has_key?(from_state)
+      @steps[from_state] = Hash.new
+      @steps[from_state]["transitions"] = Hash.new
+    end
+    @steps[from_state]["transitions"][input] = [action, to_state]
+  end
+end

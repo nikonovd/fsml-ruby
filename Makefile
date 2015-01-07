@@ -15,3 +15,5 @@ clean:
 	@rm -rf fsml_parser.rb
 	@rm -rf FSML.tokens
 	@rm -rf *.png
+	@rm -rf DefaultHandler.rb
+	@rm -rf DefaultStepper.rb

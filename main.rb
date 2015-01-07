@@ -6,6 +6,7 @@ require 'validator'
 require 'exceptions'
 require 'visualizer'
 require 'simulator'
+require 'code_generator'
 
 if ARGV.length == 0
   puts "No input file passed as argument."
@@ -15,10 +16,9 @@ else
   parser = FSML::Parser.new(input);
   machine = parser.to_ast()
 
-  validator = Validator.new(machine)
-
   begin
     # validation
+    validator = Validator.new(machine)
     validator.validate()
 
     # simluate with sample input
@@ -27,6 +27,8 @@ else
     simulator.simulate(sample_input)
 
     # todo: generate ruby code for stepper and handler
+    generator = CodeGenerator.new(machine)
+    generator.generate
 
     # print graph
     visualizer = Visualizer.new(machine, ARGV[0])

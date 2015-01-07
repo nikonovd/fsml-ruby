@@ -1,6 +1,6 @@
 class Transition
 
-  attr_reader :to, :input, :action
+  attr_reader :to, :input, :action, :from
 
   def initialize(from_state, to_state, input, action)
     @from = from_state

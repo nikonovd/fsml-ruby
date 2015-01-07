@@ -1,0 +1,21 @@
+class <%= @handler_class_name %>
+
+  def initialize
+    @functions = Hash.new
+
+  <% @actions.keep_if {|a| a.nil? == false }.each do |action| %>
+    @functions[<%= action %>] =  "handle_<%= action %>"
+  <% end %>
+  end
+
+  def handle(action)
+    self.method(@functions[action]).call if not action == "nil"
+  end
+
+  <% @actions.keep_if {|a| a.nil? == false }.each do |action| %>
+    def handle_<%= action %>
+      puts "handling #{<%=action %>}"
+    end
+  <% end %>
+
+end

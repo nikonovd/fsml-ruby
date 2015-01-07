@@ -13,8 +13,8 @@ class Validator
     check_single_initial()
     check_distinct_ids()
     check_determinism()
-    check_reachability()
     check_resolvability()
+    check_reachability()
   end
 
   def check_single_initial
