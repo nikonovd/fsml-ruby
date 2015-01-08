@@ -27,7 +27,6 @@ class State
       to_state = state_machine.get_state(transition.to)
       reachable_states.push(to_state) if not to_state.nil?
     end
-
     return reachable_states
   end
 
@@ -38,8 +37,7 @@ class State
   end
 
   def sanitize_to_state(to_state)
-    to_state = (to_state.nil? or to_state.empty?) ? self.name : to_state;
-    return to_state
+    return (to_state.nil? or to_state.empty?) ? self.name : to_state;
   end
 
   def initialize_transitions(input)

@@ -9,8 +9,9 @@ require 'simulator'
 require 'code_generator'
 
 if ARGV.length == 0
-  puts "No input file passed as argument."
-else
+  puts "no input file passed as argument."
+  return
+end
   input = File.read(ARGV[0]);
 
   parser = FSML::Parser.new(input);
@@ -26,7 +27,7 @@ else
     simulator = Simulator.new(machine)
     simulator.simulate(sample_input)
 
-    # todo: generate ruby code for stepper and handler
+    # generate ruby code for stepper and handler
     generator = CodeGenerator.new(machine)
     generator.generate
 
@@ -37,4 +38,3 @@ else
   rescue Exceptions::FSMLException => e
     raise e
   end
-end

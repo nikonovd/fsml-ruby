@@ -15,11 +15,8 @@ class CodeGenerator
   end
 
   def generate
-    handler_file = File.read("handler.rb.template")
-    stepper_file = File.read("stepper.rb.template")
-
-    handler_renderer = ERB.new(handler_file)
-    stepper_renderer = ERB.new(stepper_file)
+    handler_renderer = ERB.new(File.read("handler.rb.template"))
+    stepper_renderer = ERB.new(File.read("stepper.rb.template"))
 
     File.open("#{@handler_class_name}.rb", 'w+') do |f|
       f.write(handler_renderer.result(binding))

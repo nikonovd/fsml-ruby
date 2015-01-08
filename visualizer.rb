@@ -21,13 +21,8 @@ class Visualizer
 
   def append_nodes
     @state_machine.states.each do |state_array|
-      state_name = state_array.first
-      state = @state_machine.states[state_name].first
-      if state.initial?
-        @nodes[state.name] = @graph.add_node(state.name, :shape => 'ellipse', :style => 'filled')
-      else
-        @nodes[state.name] = @graph.add_node(state.name, :shape => 'ellipse')
-      end
+      state = @state_machine.states[state_array.first].first
+      state.initial? ? @nodes[state.name] = @graph.add_node(state.name, :shape => 'ellipse', :style => 'filled') : @nodes[state.name] = @graph.add_node(state.name, :shape => 'ellipse')
       append_transitions(state)
     end
   end
@@ -42,8 +37,8 @@ class Visualizer
 
   def create_transition(state, transition)
     from = state.name
-    to = (transition.to.nil? or transition.to.empty?) ? state.name : transition.to
-    label = transition.input + ((transition.action.nil? or transition.action.empty?) ? '' : '/'+transition.action)
+    to = (transition.to.nil? or transition.to.empty?) ? from : transition.to
+    label = transition.input + ((transition.action.nil? or transition.action.empty?) ? '' : '/' + transition.action)
     @graph.add_edge(from, to, :label => label)
   end
 
