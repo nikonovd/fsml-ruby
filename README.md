@@ -1,7 +1,7 @@
 FSML-Ruby
 =========
 
-This is an implementation of the so called Finite State Machine Language (FSML) using the ruby language.
+This is an implementation of the so called [Finite State Machine Language (FSML)](http://softlang.uni-koblenz.de/slepro/fsml.pdf) using the ruby language.
 
 Prerequisites
 =========
