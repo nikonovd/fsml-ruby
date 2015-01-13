@@ -5,6 +5,7 @@ options {
 }
 
 @header {
+    require 'exceptions'
 }
 
 @init {
@@ -15,6 +16,10 @@ options {
     def to_ast()
         self.fsm
         @machine
+    end
+
+    def error_message(e)
+        raise Exceptions::ParseException
     end
 }
 
