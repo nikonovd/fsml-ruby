@@ -18,6 +18,10 @@ class FSMTest < Test::Unit::TestCase
     @resolution_not_ok = parse_fsm("resolutionNotOk.fsml")
   end
 
+  def test_syntax_not_ok
+    assert_raise(ParseException) { parse_fsm("syntaxNotOk.fsml") }
+  end
+
   def test_ids_not_ok
     validator = Validator.new(@ids_not_ok)
     assert_raise(DistinctIdsException) { validator.validate() }
